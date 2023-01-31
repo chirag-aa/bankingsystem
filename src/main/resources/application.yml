@@ -1,0 +1,32 @@
+micronaut:
+  application:
+    name: bankingsystem
+  server:
+    port: 4300
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: ${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}
+datasources:
+  default:
+    url: ${JDBC_URL:`jdbc:postgresql://localhost:5432/mybankDb`}
+    username: ${JDBC_USER:postgres}
+    password: ${JDBC_PASSWORD:123}
+    driverClassName: ${JDBC_DRIVER:org.postgresql.Driver}
+    dialect: POSTGRES
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true
+
+netty:
+  default:
+    allocator:
+      max-order: 3
